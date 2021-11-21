@@ -19,18 +19,40 @@ class bbb extends StatelessWidget {
 
 
 class hhh extends StatefulWidget {
-  hhh({Key key}) : super(key: key);
+  
+  List<Widget> smslist = [];
+  void createSingleSms() {
+
+  }
 
   @override
   _hhhState createState() => _hhhState();
 }
 
 class _hhhState extends State<hhh> {
+
+List<Widget> smsList = [];
+void  createSingleSms() {
+  Widget text = const Text("ky");
+  smsList.add(text);
+}
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      bottomNavigationBar: SizedBox(
+      body: SafeArea(
+        child:ListView.builder(
+          itemBuilder:(context, index) {
+            return smsList[index];
+          }, 
+          itemCount: smsList.length,
+          ),
+      ),
+
+
+
+
+        bottomNavigationBar: SizedBox(
         width: size.width,
         height: 70.0,
         child: Row(
@@ -41,20 +63,24 @@ class _hhhState extends State<hhh> {
               child: const TextField(
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.bug_report_sharp),
-                  labelText: "boo"
-                  border: OutlineInputBorder()
+                  labelText: "boo",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(30))
+                  )
                 ),
               ),
             ),
             IconButton(
-              icon: Icon(
-                Icons.send
-              ),
-              onPressed: null,
+              icon:const Icon(Icons.arrow_forward_ios), 
+              onPressed: () {
+                createSingleSms();
+              }, 
             ),
           ]
         ),
-      ),
+      )  
     );
   }
 }
+
+
